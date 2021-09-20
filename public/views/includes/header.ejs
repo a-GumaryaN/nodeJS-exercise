@@ -1,10 +1,11 @@
  <!-- header -->
+ <link rel="stylesheet" href="../../assets/css/all.min.css">
  <header class="main-header default">
      <div class="container">
          <div class="row">
              <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                  <div class="logo-area default">
-                     <a href="#">
+                     <a href="http://localhost:3000/">
                          <img src="../../assets/img/logo.png" alt="">
                      </a>
                  </div>
@@ -12,14 +13,17 @@
              <div class="col-lg-6 col-md-5 col-sm-8 col-7">
                  <div class="search-area default">
                      <form action="" class="search">
-                         <input type="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                         <input  type="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
                          <button type="submit"><img src="../../assets/img/search.png" alt=""></button>
                      </form>
                  </div>
              </div>
              <div class="col-md-4 col-sm-12">
+
+                 <% if( true ){ %>
+
                  <div class="user-login dropdown">
-                     <a href="#" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
+                     <a href="" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
                          id="navbarDropdownMenuLink1">
                          ورود / ثبت نام
                      </a>
@@ -33,8 +37,32 @@
                          </div>
                      </ul>
                  </div>
+
+                 <% }else{ %>
+
+                 <div class="user-login dropdown">
+                     <a href="http://localhost:3000/profile" class="btn btn-neutral dropdown-toggle"
+                         data-toggle="dropdown" id="navbarDropdownMenuLink1"><i class="fas fa-user"></i>
+                         حساب کاربری
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                         <div class="dropdown-item">
+                             <a href="http://localhost:3000/login" class="btn btn-info">
+                                <img src="">
+                                <% userName %>
+                             </a>
+                         </div>
+                     </ul>
+                 </div>
+
+
+                 <% } %>
+
+
+
+
                  <div class="cart dropdown">
-                     <a href="#" class="btn dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
+                     <a href="" class="btn dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
                          <i class="now-ui-icons shopping_cart-simple"></i>
                          سبد خرید
                      </a>
@@ -53,34 +81,34 @@
                          <ul class="basket-list">
 
 
-                            <% for( let item of [] ){ %>
-                                 <li>
-                                     <a href="#" class="basket-item">
-                                         <button class="basket-item-remove"></button>
-                                         <div class="basket-item-content">
-                                             <div class="basket-item-image">
-                                                 <img alt="" src=<%= item.src %> >
+                             <% for( let item of [] ){ %>
+                             <li>
+                                 <a href="" class="basket-item">
+                                     <button class="basket-item-remove"></button>
+                                     <div class="basket-item-content">
+                                         <div class="basket-item-image">
+                                             <img alt="" src=<%= item.src %>>
+                                         </div>
+
+                                         <div class="basket-item-details"><%= item.name %>
+                                             <div class="basket-item-title">
                                              </div>
-                                             
-                                             <div class="basket-item-details"><%= item.name %>
-                                                 <div class="basket-item-title">
-                                                 </div>
-                                                 <div class="basket-item-params">
-                                                     <div class="basket-item-props">
-                                                         <span><%= item.number %></span>
-                                                         <span><%= item.color %></span>
-                                                     </div>
+                                             <div class="basket-item-params">
+                                                 <div class="basket-item-props">
+                                                     <span><%= item.number %></span>
+                                                     <span><%= item.color %></span>
                                                  </div>
                                              </div>
                                          </div>
-                                     </a>
-                                 </li>
+                                     </div>
+                                 </a>
+                             </li>
 
-                                 <% } %>
-                             
-                             
+                             <% } %>
+
+
                          </ul>
-                         
+
 
                          <a href="#" class="basket-submit">ورود و ثبت سفارش</a>
                      </ul>

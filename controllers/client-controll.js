@@ -1,48 +1,74 @@
-//declare path module
+//-----------------------------modules-declaration-part-----------------------------
+//declare path module for routing
 const path = require('path')
 
+//declare xss module to prevent XSS attacs
 const xss = require("../modules/xss");
 
+//declare mongodb custome module
 const mongodb = require(path.join(__dirname, "../modules", "mongodb"));
 
+//declare alias for console.log
 const log = console.log;
 
+//declare dependencies url and constance names
 const url = "mongodb://localhost:27017/",
     dbname = 'nodejsExercise';
 
-//declare home methode
-exports.home = (req, res) => {
-    res.render(path.join(__dirname, "../public", "views", "index.ejs"), {
+//-----------------------------methodes-declaration-part-----------------------------
 
-    });
-}
+//-----------------------------client-login-part-----------------------------
 
 //declare login methode
 exports.login = (req, res) => {
     res.render(path.join(__dirname, "../public", "views", "login.ejs"));
 }
 
+//declare loginCheck methode
+exports.loginCheck = (req, res) => {
+    let username = xss.removeTags(req.body.username),
+        password = xss.removeTags(req.body.password);
 
+    mongodb.find(url, dbname, 'customers', {
+            username: username
+        })
+        .then((findResult) => {
+            if (findResult.length !== 0) {
+                res.redirect(`http://localhost:3000/?username=${username}`);
+            } else {
+                userId = findResult._id;
+                res.redirect('http://localhost:3000/login?result=clientNotFound');
+            }
+        })
+        .catch((err) => {
+            log(err);
+        });
+}
+
+//----------------------------------client-register-part----------------------------------
 //declare register methode
 exports.register = (req, res) => {
     res.render(path.join(__dirname, "../public", "views", "register.ejs"));
 }
 
+//declare welcome methode
+exports.welcome = (req, res) => {
+    res.render(path.join(__dirname, "../public", "views", "welcome.ejs"));
+}
 
 //declare registerCheck methode
 exports.registerCheck = (req, res) => {
 
-
-    let phone = xss.removeTags(req.body.phone),
+    let username = xss.removeTags(req.body.username),
         password = xss.removeTags(req.body.password);
 
     let personObject = [{
-        phone: phone,
+        username: username,
         password: password
     }];
 
     mongodb.find(url, dbname, 'customers', {
-            phone: phone
+            username: username
         }).then((findResult) => {
 
             if (findResult.length === 0) {
@@ -53,7 +79,7 @@ exports.registerCheck = (req, res) => {
                     .catch((err) => {
                         res.redirect('http://localhost:3000/register?result=canNotRegistered');
                     });
-                    
+
             } else {
                 res.redirect('http://localhost:3000/register?result=clientRegistered');
             }
@@ -64,9 +90,18 @@ exports.registerCheck = (req, res) => {
 }
 
 
+//----------------------------------client-profile-part----------------------------------
+//declare profileAdditionalInfo methode
+exports.profileAdditionalInfo = (req, res) => {
+    res.render(path.join(__dirname, "../public", "views", "profile-additional-info.ejs"));
+}
 
+//declare profileAdditionalInfo methode
+exports.profile = (req, res) => {
+    res.render(path.join(__dirname, "../public", "views", "profile-additional-info.ejs"));
+}
 
-//declare register methode
+//declare resetPassword methode
 exports.resetPassword = (req, res) => {
     res.render(path.join(__dirname, "../public", "views", "passwordChange.ejs"));
 }

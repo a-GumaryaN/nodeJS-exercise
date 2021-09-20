@@ -3,9 +3,9 @@ project
         home -->to do
             single product
 
-        register -->to do
-            register page
-            welcome page
+        register --> ok
+            register page -->ok
+            welcome page -->ok
         login
         profile
             profile page
