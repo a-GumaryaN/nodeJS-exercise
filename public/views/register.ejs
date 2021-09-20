@@ -36,7 +36,7 @@
                             <div class="account-box-content">
 
 
-                                <p class="errDisplay"></p>
+                                <p class="message"></p>
 
                                 <form method="POST" action="" class="form-account" onsubmit="return checkForm()">
 
@@ -46,7 +46,7 @@
 
                                     <div class="form-account-row">
                                         <label class="input-label"><i class="now-ui-icons users_single-02"></i></label>
-                                        <input name='phone-number' id="phone-number" class="input-field" type="text"
+                                        <input name='phone' id="phone-number" class="input-field" type="text"
                                             placeholder="پست الکترونیک یا شماره موبایل خود را وارد نمایید">
                                     </div>
 
@@ -139,14 +139,47 @@
 
     <script>
         const htmlSpecialChars = (input) => {
-          
+
         }
+
+        const message = () => {
+            let err = $('.message');
+
+            err.html("");
+
+            let messageColor = 'red';
+
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get('result') === 'Registered') {
+
+                messageColor = 'green';
+
+                err.html(err.html() + `<span style="color:${messageColor}">` + "ثبت نام با موفقیت انجام شد!" +
+                    '</span>');
+
+            } else if (params.get('result') === 'canNotRegistered') {
+
+                err.html(err.html() + `<span style="color:${messageColor}">` +
+                    "ثبت نام به مشکل برخورد،دوباره امتحان کنید!" + '</>');
+
+            } else if (params.get('result') === 'clientRegistered') {
+
+                err.html(err.html() + `<span style="color:${messageColor}">` + "شما قبلا ثبت نام کردید!" +
+                    '</span>');
+
+            }
+        }
+
+        $(document).ready(() => {
+            message();
+        });
 
 
 
 
         const checkForm = () => {
-            let err = $('.errDisplay');
+            let err = $('.message');
             err.html("");
 
             let result = true;
@@ -155,20 +188,31 @@
             const password = $('#password').val();
 
             if (phoneNumber === '') {
+                
                 err.html(err.html() + '<span>' + "شماره تلفن خالی است" + '</span>');
+                
                 result = false;
+
             } else if (!((/^[0-9]*$/).test(phoneNumber))) {
-                err.html(err.html() + '<span>' + "شماره تلفن باید عدد باشد" + '</span>');
+
+                err.html(err.html() + '<span>' + "لطفا شماره تلفن خود را مثل آدم وارد کنید" + '</span>');
+
                 result = false;
+
             }
 
             if (password === '') {
+                
                 err.html(err.html() + '<span>' + "پسورد خالی است" + '</span>');
+                
                 result = false;
 
             } else if (password.length < 8) {
+               
                 err.html(err.html() + '<span>' + 'پسورد باید بیشتر از ۸ کاراکتر باشد' + '</span>');
+               
                 result = false;
+                
             }
             return result;
 

@@ -6906,11 +6906,11 @@ main.profile-user-page .responsive-profile-menu .dropdown-menu a i {
 
 /* additional part by backend developer */
 
-.errDisplay{
+.message{
     color: red;
 }
 
-.errDisplay span{
+.message span{
     display: block;
 }
 

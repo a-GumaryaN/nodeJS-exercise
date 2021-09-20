@@ -17,7 +17,7 @@ const tagOrComment = new RegExp(
     'gi'
 );
 
-const removeTags = (html) => {
+exports.removeTags = (html) => {
     var oldHtml;
     do {
         oldHtml = html;
@@ -26,6 +26,3 @@ const removeTags = (html) => {
     html=html.replace(/>/g, '$@5;');
     return html.replace(/</g, '&lt;');
 }
-
-
-console.log(removeTags('<a href="#" alireza class=" logo "> alireza <img src = "../assets/img/logo.png"alt = "" > a lire  <//>za</a>alireza'));

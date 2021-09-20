@@ -1,6 +1,6 @@
 const mongodb = require('mongodb').MongoClient;
 
-const url = "mongodb://localhost:27017/";
+// const url = "mongodb://localhost:27017/";
 
 const log = console.log;
 
@@ -19,17 +19,17 @@ const log = console.log;
 // });
 
 
-exports.insert = (dbName, collectionName, insertArray) => {
+exports.insert = (url,dbName, collectionName, insertArray) => {
     return new Promise((resolve, reject) => {
 
         mongodb.connect(url + dbName, (err, db) => {
-            if (err) return reject(err);
+            if (err) return reject(`error in connect to database in insert methode=> ${err}`);
             else {
                 const dbo = db.db();
                 dbo.collection(collectionName).insertMany(insertArray, (err, result) => {
-                    if (err) return reject(err);
+                    if (err) return reject(`error in connect to database in insert methode=> ${err}`);
                     else {
-                        return resolve(result.ops);
+                        return resolve(`user added to database succesfully=> ${result.ops}`);
                     }
                 })
 
@@ -40,14 +40,14 @@ exports.insert = (dbName, collectionName, insertArray) => {
 }
 
 
-exports.find = (dbName, collectionName, findQuery,projection) => {
+exports.find = (url,dbName, collectionName, findQuery) => {
     return new Promise((resolve, reject) => {
 
         mongodb.connect(url + dbName, (err, db) => {
             if (err) return reject(err);
             else {
                 const dbo = db.db();
-                dbo.collection(collectionName).find(findQuery, projection).toArray((err, result) => {
+                dbo.collection(collectionName).find(findQuery).toArray((err, result) => {
                     if (err) return reject(err);
                     else{
                         return resolve(result);
