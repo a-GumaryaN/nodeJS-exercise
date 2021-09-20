@@ -22,5 +22,5 @@
     "nodemon": "^2.0.12",
     "path": "^0.12.7"
   },
-  "start": "nodemon server.js"
+  "start":"nodemon"
 }

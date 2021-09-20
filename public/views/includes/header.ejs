@@ -5,7 +5,7 @@
              <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                  <div class="logo-area default">
                      <a href="#">
-                         <img src="../assets/img/logo.png" alt="">
+                         <img src="../../assets/img/logo.png" alt="">
                      </a>
                  </div>
              </div>
@@ -13,7 +13,7 @@
                  <div class="search-area default">
                      <form action="" class="search">
                          <input type="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
-                         <button type="submit"><img src="../assets/img/search.png" alt=""></button>
+                         <button type="submit"><img src="../../assets/img/search.png" alt=""></button>
                      </form>
                  </div>
              </div>
@@ -25,10 +25,11 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                          <div class="dropdown-item">
-                             <a class="btn btn-info">ورود به دیجی کالا</a>
+                             <a href="http://localhost:3000/login" class="btn btn-info">ورود به دیجی کالا</a>
                          </div>
                          <div class="dropdown-item font-weight-bold">
-                             <span>کاربر جدید هستید؟</span> <a class="register" href="#">ثبت‌نام</a>
+                             <span>کاربر جدید هستید؟</span> <a class="register"
+                                 href="http://localhost:3000/register">ثبت‌نام</a>
                          </div>
                      </ul>
                  </div>
@@ -50,27 +51,37 @@
                              </a>
                          </div>
                          <ul class="basket-list">
-                             <li>
-                                 <a href="#" class="basket-item">
-                                     <button class="basket-item-remove"></button>
-                                     <div class="basket-item-content">
-                                         <div class="basket-item-image">
-                                             <img alt="" src="../assets/img/cart/2324935.jpg">
-                                         </div>
-                                         <div class="basket-item-details">
-                                             <div class="basket-item-title">هندزفری بلوتوث مدل S530
+
+
+                            <% for( let item of [] ){ %>
+                                 <li>
+                                     <a href="#" class="basket-item">
+                                         <button class="basket-item-remove"></button>
+                                         <div class="basket-item-content">
+                                             <div class="basket-item-image">
+                                                 <img alt="" src=<%= item.src %> >
                                              </div>
-                                             <div class="basket-item-params">
-                                                 <div class="basket-item-props">
-                                                     <span> ۱ عدد</span>
-                                                     <span>رنگ مشکی</span>
+                                             
+                                             <div class="basket-item-details"><%= item.name %>
+                                                 <div class="basket-item-title">
+                                                 </div>
+                                                 <div class="basket-item-params">
+                                                     <div class="basket-item-props">
+                                                         <span><%= item.number %></span>
+                                                         <span><%= item.color %></span>
+                                                     </div>
                                                  </div>
                                              </div>
                                          </div>
-                                     </div>
-                                 </a>
-                             </li>
+                                     </a>
+                                 </li>
+
+                                 <% } %>
+                             
+                             
                          </ul>
+                         
+
                          <a href="#" class="basket-submit">ورود و ثبت سفارش</a>
                      </ul>
                  </div>
@@ -211,7 +222,7 @@
                                  </li>
                              </ul>
                          </li>
-                         <img src="../assets/img/1636.png" alt="">
+                         <img src="../../assets/img/1636.png" alt="">
                      </ul>
                  </li>
                  <li class="list-item list-item-has-children mega-menu mega-menu-col-5">
@@ -348,7 +359,7 @@
                                  </li>
                              </ul>
                          </li>
-                         <img src="../assets/img/1636.png" alt="">
+                         <img src="../../assets/img/1636.png" alt="">
                      </ul>
                  </li>
                  <li class="list-item list-item-has-children mega-menu mega-menu-col-5">
@@ -485,7 +496,7 @@
                                  </li>
                              </ul>
                          </li>
-                         <img src="../assets/img/1636.png" alt="">
+                         <img src="../../assets/img/1636.png" alt="">
                      </ul>
                  </li>
                  <li class="list-item">

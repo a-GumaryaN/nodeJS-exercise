@@ -6901,3 +6901,16 @@ main.profile-user-page .responsive-profile-menu .dropdown-menu a i {
 }
 
 /* responsive */
+
+
+
+/* additional part by backend developer */
+
+.errDisplay{
+    color: red;
+}
+
+.errDisplay span{
+    display: block;
+}
+

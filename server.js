@@ -40,27 +40,25 @@ app.set({
     "view engine": "ejs"
 });
 
-// //declare client routes module
-// const clientRoutes = require(path.join(__dirname, "routes", "client-routes"));
-// //declare client routes for express module
-// app.use(clientRoutes);
+//declare client routes module
+const clientRoutes = require("./routes/client-routes");
+//declare client routes for express module
+app.use(clientRoutes);
 
 
-// //declare client routes module
-// const adminRoutes = require('./routes/admin-routes');
-// //declare client routes for express module
-// app.use( "/admin" , adminRoutes);
+
+//declare client routes module
+const adminRoutes = require('./routes/admin-routes');
+//declare client routes for express module
+app.use( "/admin" , adminRoutes);
 
 
 //declare 404 page
-app.get("" , (req, res)=>{
-res.render(path.join(__dirname,'./public', 'views', 'index.ejs'));
+app.use("" , (req, res)=>{
+res.render(path.join(__dirname , "public" , "views" , "404.ejs"));
 });
 
-
-
-
-
+//run server by 'server' object
 server.listen(port ,(err)=>{
 if(err) throw err;
 else log(`server is running on port ${port}`);

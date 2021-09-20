@@ -1,0 +1,21 @@
+project
+    client
+        home -->to do
+            single product
+
+        register -->to do
+            register page
+            welcome page
+        login
+        profile
+            profile page
+            profile-orders page
+            profile-orders-return page
+            profile-favorites page
+            profile-personal-info page
+            profile-additional-info page
+        change passwords
+
+    admin
+
+    
